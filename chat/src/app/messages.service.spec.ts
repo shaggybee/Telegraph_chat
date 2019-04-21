@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CurrentUserService } from './current-user.service';
+import { MessagesService } from './messages.service';
 
-describe('CurrentUserService', () => {
+describe('MessagesService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CurrentUserService = TestBed.get(CurrentUserService);
+    const service: MessagesService = TestBed.get(MessagesService);
     expect(service).toBeTruthy();
   });
 });

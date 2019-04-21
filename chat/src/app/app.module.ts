@@ -2,13 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FormLoginComponent } from './form-login/form-login.component';
 import { FormChatComponent } from './form-chat/form-chat.component';
 
-import { AuxiliaryDataService } from './auxiliary-data.service';
-import { CurrentUserService } from './current-user.service';
+import { AuthorisationService } from './authorisation.service';
+import { UsersService } from './users.service';
+import { MessagesService } from './messages.service';
+
+const appRoutes: Routes = [
+  {path: 'login', component: FormLoginComponent},
+  {path: 'chat', component: FormChatComponent}
+]
 
 @NgModule({
   declarations: [
@@ -19,9 +26,10 @@ import { CurrentUserService } from './current-user.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuxiliaryDataService, CurrentUserService],
+  providers: [AuthorisationService, UsersService, MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,26 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { AuxiliaryDataService } from '../auxiliary-data.service';
-import { CurrentUserService } from '../current-user.service';
+import { AuthorisationService } from '../authorisation.service';
+import { Router } from '@angular/router';
+import { MessagesService, MessageFormat } from '../messages.service';
 
 @Component({
   selector: 'app-form-chat',
   templateUrl: './form-chat.component.html',
   styleUrls: ['./form-chat.component.css']
 })
-export class FormChatComponent implements OnInit {
-  a: String;
 
-  constructor(private auxiliaryData: AuxiliaryDataService, private currentUser: CurrentUserService){
-    this.a = localStorage.getItem("listOfUsers");
-  };
+export class FormChatComponent implements OnInit {
+  private authorisation: AuthorisationService;
+  private router: Router;
+  private message: MessagesService;
+  textMessage: string;
+
+  constructor(authorisation: AuthorisationService, router: Router, message: MessagesService) {
+    this.message = message;
+    this.router = router;
+    this.authorisation = authorisation;
+  }
 
   ngOnInit() {
   }
 
-  clickLogOut(){
-    this.currentUser.logOut();
-    this.auxiliaryData.formChatVisible = false;
-    this.auxiliaryData.formLoginVisible = true;
+  clickLogOut() {
+    this.authorisation.logOut();
+    this.router.navigate(['login']);
+  }
+
+  clickMessageSend() {
+    this.message.addMessage(this.textMessage);
   }
 
 }

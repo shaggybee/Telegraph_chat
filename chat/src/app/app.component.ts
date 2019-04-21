@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuxiliaryDataService } from './auxiliary-data.service';
-import { CurrentUserService } from './current-user.service';
+import { AuthorisationService } from './authorisation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,12 @@ import { CurrentUserService } from './current-user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private router: Router;
+  private authorisation: AuthorisationService;
 
-  constructor(private auxiliaryData: AuxiliaryDataService, private currentUser: CurrentUserService){
-    if (this.currentUser.loginCompleted) this.auxiliaryData.formChatVisible = true;
-    else this.auxiliaryData.formLoginVisible = true;
+  constructor(authorisation: AuthorisationService, router: Router) {
+    this.router = router;
+    this.authorisation = authorisation;
+    if (this.authorisation.isAutorised()) {this.router.navigate(['chat']); } else {this.router.navigate(['login']); }
   }
 }

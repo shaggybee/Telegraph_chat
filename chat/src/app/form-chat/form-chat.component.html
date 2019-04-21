@@ -1,4 +1,4 @@
-<p>
-  {{this.currentUser.user.name}}
-</p>
+<p *ngFor="let message of this.message.getListMessage()" >{{message.textMessage}}</p>
+<input type = "text" [(ngModel)]="textMessage" />
+<button (click) = "clickMessageSend()">Message Send</button>
 <button (click) = "clickLogOut()">Log Out</button>
