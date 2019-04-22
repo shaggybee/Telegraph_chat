@@ -25,9 +25,4 @@ export class FormLoginComponent implements OnInit {
     this.router.navigate(['chat']);
   }
 
-  clickLogInClear() {
-    localStorage.clear();
-    this.router.navigate(['login']);
-  }
-
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorisationService } from '../authorisation.service';
 import { Router } from '@angular/router';
-import { MessagesService, MessageFormat } from '../messages.service';
+import { MessagesService } from '../messages.service';
+import { UsersService} from '../users.service';
 
 @Component({
   selector: 'app-form-chat',
@@ -13,12 +14,16 @@ export class FormChatComponent implements OnInit {
   private authorisation: AuthorisationService;
   private router: Router;
   private message: MessagesService;
+  private user: UsersService;
   textMessage: string;
+  logInUser: string;
 
-  constructor(authorisation: AuthorisationService, router: Router, message: MessagesService) {
+  constructor(authorisation: AuthorisationService, router: Router, message: MessagesService, user: UsersService) {
     this.message = message;
     this.router = router;
     this.authorisation = authorisation;
+    this.user = user;
+    this.logInUser = this.user.getUserById(localStorage.getItem('CurrentUserId')).name;
   }
 
   ngOnInit() {
@@ -31,6 +36,6 @@ export class FormChatComponent implements OnInit {
 
   clickMessageSend() {
     this.message.addMessage(this.textMessage);
+    this.textMessage = '';
   }
-
 }

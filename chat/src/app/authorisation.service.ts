@@ -19,7 +19,7 @@ export class AuthorisationService {
   }
 
   public logIn(name: string) {
-    let user = this.user.getUser(name);
+    let user = this.user.getUserByName(name);
     if (user == null) { user = this.user.addUser(name); }
     this.user.selectUser(user.id);
   }
@@ -27,6 +27,4 @@ export class AuthorisationService {
   public isAutorised(): boolean {
     if (localStorage.getItem('CurrentUserId') == null) { return false; } else { return true; }
   }
-
-
 }

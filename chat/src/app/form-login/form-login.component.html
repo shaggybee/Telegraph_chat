@@ -1,6 +1,13 @@
-<p>
-  {{inputName}}
-</p>
-<input type = "text" [(ngModel)]="inputName" />
-<button (click) = "clickLogIn()">Log In</button>
-<button (click) = "clickLogInClear()">Clear LocalStorage</button>
+<div class="container">
+  <div class="container-form">
+    <div class="container-label">
+      <p class="text">Телегра<span class="text-character-font">ф</span></p>
+    </div>
+    <div class="container-inputElement">
+      <mat-form-field>
+        <input matInput placeholder="Введите имя" [(ngModel)]="inputName"/>
+      </mat-form-field>
+      <button mat-icon-button (click) = "clickLogIn()"><mat-icon>input</mat-icon></button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.container-chatForm {
+    margin-top: 40px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.chatForm-header {
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(242, 242, 242);
+}
+
+.chatForm-listOfMessages {
+    max-height: 500px;
+    height: 100%;
+    overflow: scroll;
+}
+
+.listOfMessage-form {
+
+}
+
+.chatForm-inputElement {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(242, 242, 242);
+    padding: 0 15px;
+}
+
+.chatForm-header .text {
+    color: dimgray;
+    font-size: 18px;
+}

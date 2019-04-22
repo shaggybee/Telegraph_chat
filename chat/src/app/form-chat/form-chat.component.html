@@ -1,4 +1,28 @@
-<p *ngFor="let message of this.message.getListMessage()" >{{message.textMessage}}</p>
-<input type = "text" [(ngModel)]="textMessage" />
-<button (click) = "clickMessageSend()">Message Send</button>
-<button (click) = "clickLogOut()">Log Out</button>
+<div class="container">
+  <div class="container-chatForm">
+      <div class="chatForm-header">
+        <p class="text">{{this.logInUser}}</p>
+        <button mat-icon-button (click) = "clickLogOut()"><mat-icon>exit_to_app</mat-icon></button>
+      </div>
+      <div class="chatForm-listOfMessages">
+        <div class="listOfMessage-form" *ngFor="let message of this.message.getListMessage()">
+          <div>
+            <p>{{this.user.getUserById(message.idUser).name}}</p>
+            <p>{{message.time}}</p>
+          </div>
+          <div>
+            <p>{{message.textMessage}}</p>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="chatForm-inputElement">
+        <mat-form-field>
+          <input matInput placeholder="Сообщение" [(ngModel)]="textMessage" />
+        </mat-form-field>
+        <button mat-icon-button (click) = "clickMessageSend()"><mat-icon>send</mat-icon></button>
+      </div>
+  </div>
+</div>

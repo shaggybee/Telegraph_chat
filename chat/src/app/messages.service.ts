@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class MessagesService {
-  private user: UsersService;
-
-  constructor(user: UsersService ) {
-    this.user = user;
+  constructor() {
   }
 
   public addMessage(textMessage: string): MessageFormat {
@@ -24,7 +20,7 @@ export class MessagesService {
       idMessage: (Number.parseInt(localStorage.getItem('extremeIdMessage')) + 1).toString(),
       idUser: localStorage.getItem('CurrentUserId'),
       textMessage,
-      time: new Date().toLocaleString(),
+      time: new Date().toLocaleTimeString(),
     };
     listMessage.push(message);
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
