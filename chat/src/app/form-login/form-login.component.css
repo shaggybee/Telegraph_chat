@@ -1,29 +1,27 @@
-.container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
-.container-form {
+.form-authorisation{
     margin-top: 150px;
+    background-color: #F7F7F7;
 }
 
-.container-label {
+.logo {
     display: flex;
     justify-content: center;
 }
 
-.container-inputElement {
-    display: flex;
-    align-items: center;
+.text {
+    color: dimgray;
+    font-size: 16px;
 }
 
-.container-label .text {
-    color: dimgray;
+.logo .text {
     font-size: 32px;
 }
 
-.text-character-font {
+.text__character-font {
     color: brown;
+}
+
+.input-element {
+    display: flex;
+    align-items: center;
 }

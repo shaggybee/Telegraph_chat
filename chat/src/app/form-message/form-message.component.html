@@ -1,3 +1,23 @@
-<p>
-  form-message works!
-</p>
+<mat-card *ngFor="let message of listMessages" class="form-message">
+    <mat-card-content class="form-message-header">
+        <article class="text">{{showNameCurrentUser(message.idUser)}}</article>
+        <span class="spacer"></span>
+        <article class="text-time">{{message.time}}</article>
+    </mat-card-content>
+    <mat-card-content class="form-message-content" *ngIf="!formRedactMessageVisible(message.idMessage)">
+        <article class="text">{{message.textMessage}}</article>
+    </mat-card-content>
+    <mat-card-content *ngIf="actionForMessageVisible(message.idUser)">
+        <div *ngIf="!formRedactMessageVisible(message.idMessage)">
+            <button mat-icon-button (click) = "clickOpenFormRedactMessage(message.idMessage, message.textMessage)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button (click) = "clickDeleteMessage(message.idMessage)"><mat-icon>delete</mat-icon></button>
+        </div>
+        <div *ngIf="formRedactMessageVisible(message.idMessage)">
+            <mat-form-field class="form-redact-message">
+                <textarea matTextareaAutosize matInput placeholder="Редактирование сообщения" [(ngModel)]="textRedactMessage"></textarea>
+            </mat-form-field>
+            <button mat-icon-button (click) = "clickRedactMessage(message.idMessage)"><mat-icon>check</mat-icon></button>
+            <button mat-icon-button (click) = "clickCloseFormRedactMessage()"><mat-icon>clear</mat-icon></button>
+        </div>
+    </mat-card-content>
+</mat-card>

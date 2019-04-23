@@ -1,0 +1,38 @@
+.form-message {
+    width: 540px;
+    margin: 15px 10px;
+    background-color: #FEFEFE;
+}
+
+.form-message-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+
+.form-message-content {
+    margin-bottom: 5px;
+}
+
+.form-redact-message {
+    width: 85%;
+}
+
+.text {
+    color:#425664;
+    font-size: 16px;
+}
+
+.form-message-header .text {
+    color: #1181B2;
+}
+
+.text-time {
+    color:#929D9E;
+    font-size: 13px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }

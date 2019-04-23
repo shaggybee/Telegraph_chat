@@ -1,13 +1,11 @@
-<div class="container">
-  <div class="container-form">
-    <div class="container-label">
-      <p class="text">Телегра<span class="text-character-font">ф</span></p>
-    </div>
-    <div class="container-inputElement">
-      <mat-form-field>
-        <input matInput placeholder="Введите имя" [(ngModel)]="inputName"/>
-      </mat-form-field>
-      <button mat-icon-button (click) = "clickLogIn()"><mat-icon>input</mat-icon></button>
-    </div>
-  </div>
-</div>
+  <mat-card class="form-authorisation">
+      <mat-card-title class="logo">
+          <p class="text">Телегра<span class="text__character-font">ф</span></p>
+      </mat-card-title>
+      <mat-card-content class="input-element">
+          <mat-form-field>
+              <input matInput placeholder="Введите имя" [(ngModel)]="inputName"/>
+            </mat-form-field>
+            <button mat-icon-button (click) = "clickLogIn()"><mat-icon>input</mat-icon></button>
+      </mat-card-content>
+  </mat-card>

@@ -1,28 +1,16 @@
-<div class="container">
-  <div class="container-chatForm">
-      <div class="chatForm-header">
-        <p class="text">{{this.logInUser}}</p>
+<mat-card class="chat-form">
+    <mat-card-content class="chat-form-header">
+        <article class="text">{{this.user.getUserById(this.user.getIdCurrentUser()).name}}</article>
+        <span class="spacer"></span>
         <button mat-icon-button (click) = "clickLogOut()"><mat-icon>exit_to_app</mat-icon></button>
-      </div>
-      <div class="chatForm-listOfMessages">
-        <div class="listOfMessage-form" *ngFor="let message of this.message.getListMessage()">
-          <div>
-            <p>{{this.user.getUserById(message.idUser).name}}</p>
-            <p>{{message.time}}</p>
-          </div>
-          <div>
-            <p>{{message.textMessage}}</p>
-          </div>
-          <div>
-            
-          </div>
-        </div>
-      </div>
-      <div class="chatForm-inputElement">
-        <mat-form-field>
-          <input matInput placeholder="Сообщение" [(ngModel)]="textMessage" />
-        </mat-form-field>
-        <button mat-icon-button (click) = "clickMessageSend()"><mat-icon>send</mat-icon></button>
-      </div>
-  </div>
-</div>
+    </mat-card-content>
+  <mat-card-content class="chat-form-messages">
+    <app-form-message></app-form-message>
+  </mat-card-content>
+  <mat-card-actions class="chat-form-send-message">
+    <mat-form-field class="area-input-message">
+      <textarea matTextareaAutosize matInput placeholder="Введите сообщение" [(ngModel)]="textMessage"></textarea>
+    </mat-form-field>
+    <button mat-icon-button (click) = "clickMessageSend()"><mat-icon>send</mat-icon></button> 
+  </mat-card-actions>
+</mat-card>

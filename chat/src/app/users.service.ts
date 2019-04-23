@@ -55,6 +55,10 @@ export class UsersService {
   public selectUser(id: string) {
     localStorage.setItem('CurrentUserId', id);
   }
+
+  public getIdCurrentUser(): string {
+    return localStorage.getItem('CurrentUserId');
+  }
 }
 
 export interface UserFormat {

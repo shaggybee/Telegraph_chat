@@ -16,14 +16,12 @@ export class FormChatComponent implements OnInit {
   private message: MessagesService;
   private user: UsersService;
   textMessage: string;
-  logInUser: string;
 
   constructor(authorisation: AuthorisationService, router: Router, message: MessagesService, user: UsersService) {
     this.message = message;
     this.router = router;
     this.authorisation = authorisation;
     this.user = user;
-    this.logInUser = this.user.getUserById(localStorage.getItem('CurrentUserId')).name;
   }
 
   ngOnInit() {
