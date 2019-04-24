@@ -1,13 +1,15 @@
 .chat-form {
     margin-top: 40px;
-    width: 600px;
-    background-color: #F7F7F7;
+    padding: 5px 0;
+    width: 650px;
+    background-color: #FAFAFA;
 }
 
 .chat-form-header {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid darkgray;
+    padding: 0 30px;
+    height: 50px;
     margin: 0;
 }
 
@@ -16,22 +18,24 @@
     overflow: scroll;
     flex-direction: column;
     margin: 0;
+    background-color: white;
 }
 
 .chat-form-send-message {
     display: flex;
-    padding: 0 15px;
-    justify-content: space-around;
+    padding: 0;
+    margin: 0;
     align-items: center;
-    border-top: 1px solid darkgray;
 }
 
 .chat-form-header .text {
+    color:#425664;
     font-size: 18px;
 }
 
 .area-input-message {
-    width: 90%;
+    margin-top: 5px;
+    width: 85%;
 }
 
 .spacer {

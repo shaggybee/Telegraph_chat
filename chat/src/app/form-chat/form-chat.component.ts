@@ -15,7 +15,7 @@ export class FormChatComponent implements OnInit {
   private router: Router;
   private message: MessagesService;
   private user: UsersService;
-  textMessage: string;
+  textMessage = '';
 
   constructor(authorisation: AuthorisationService, router: Router, message: MessagesService, user: UsersService) {
     this.message = message;
@@ -27,13 +27,18 @@ export class FormChatComponent implements OnInit {
   ngOnInit() {
   }
 
-  clickLogOut() {
+  onLogOut() {
     this.authorisation.logOut();
     this.router.navigate(['login']);
   }
 
-  clickMessageSend() {
+  onMessageSend() {
+    if (this.textMessage =='') return;
     this.message.addMessage(this.textMessage);
     this.textMessage = '';
+    setTimeout(function() {
+      document.getElementsByClassName("chat-form-messages")[0].scrollTop = document.getElementsByClassName("chat-form-messages")[0].scrollHeight;
+    }, 10);
   }
+
 }

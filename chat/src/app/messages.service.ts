@@ -22,7 +22,7 @@ export class MessagesService {
       idMessage: (Number.parseInt(localStorage.getItem('extremeIdMessage')) + 1).toString(),
       idUser: localStorage.getItem('CurrentUserId'),
       textMessage,
-      time: new Date().toLocaleTimeString(),
+      time: new Date().toLocaleTimeString('ru', {hour: 'numeric', minute: 'numeric'})
     };
     listMessage.push(message);
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));

@@ -34,21 +34,22 @@ export class FormMessageComponent implements OnInit {
     if (idMessage == this.idSelectMessage) { return true; } else { return false; }
   }
 
-  public clickDeleteMessage(idMessage: string) {
+  public onDeleteMessage(idMessage: string) {
     this.message.deleteMessage(idMessage);
   }
 
-  public clickOpenFormRedactMessage(idMessage: string, textMessage: string) {
+  public onOpenFormRedactMessage(idMessage: string, textMessage: string) {
     this.textRedactMessage = textMessage;
     this.idSelectMessage = idMessage;
   }
 
-  public clickRedactMessage(idMessage: string) {
+  public onRedactMessage(idMessage: string) {
+    if (this.textRedactMessage == '') { return; }
     this.message.redactMessage(idMessage, this.textRedactMessage);
     this.idSelectMessage = '';
   }
 
-  public clickCloseFormRedactMessage() {
+  public onCloseFormRedactMessage() {
     this.idSelectMessage = '';
   }
 

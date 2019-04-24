@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class FormLoginComponent implements OnInit {
   private authorisation: AuthorisationService;
   private router: Router;
-  inputName: string;
+  inputName = '';
 
   constructor(authorisation: AuthorisationService, router: Router){
     this.router = router;
@@ -20,9 +20,15 @@ export class FormLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  clickLogIn() {
-    this.authorisation.logIn(this.inputName);
+onLogIn() {
+    if (this.inputName == '') { return; }
+    const name = this.inputName[0].toUpperCase() + this.inputName.slice(1).toLowerCase();
+    this.authorisation.logIn(name);
     this.router.navigate(['chat']);
   }
+
+onEnterPress() {
+  this.onLogIn();
+}
 
 }

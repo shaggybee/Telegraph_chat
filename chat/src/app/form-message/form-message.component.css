@@ -1,30 +1,30 @@
 .form-message {
-    width: 540px;
-    margin: 15px 10px;
-    background-color: #FEFEFE;
-}
-
-.form-message-header {
-    display: flex;
-    align-items: center;
-    padding-bottom: 15px;
-    margin-bottom: 0;
-}
-
-.form-message-content {
-    margin-bottom: 5px;
-}
-
-.form-redact-message {
     width: 85%;
+    margin: 5px auto;
+    background-color: white;
+    border-bottom: 1px solid darkgray;
+}
+
+.form-row {
+    white-space: normal;
+    height: 100%;
+    width: 100%;
+}
+
+.form-redact {
+    display: flex;
+    width: 100%;
+    white-space: normal;
+    align-items: center;
 }
 
 .text {
     color:#425664;
-    font-size: 16px;
+    font-size: 15px;
 }
 
-.form-message-header .text {
+.text-user-name {
+    font-size: 16px;
     color: #1181B2;
 }
 
