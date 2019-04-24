@@ -20,6 +20,7 @@ import { UsersService } from './users.service';
 import { MessagesService } from './messages.service';
 
 const appRoutes: Routes = [
+  {path: '', component: AppComponent},
   {path: 'login', component: FormLoginComponent},
   {path: 'chat', component: FormChatComponent}
 ];

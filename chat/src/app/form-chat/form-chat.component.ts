@@ -14,7 +14,7 @@ export class FormChatComponent implements OnInit {
   private authorisation: AuthorisationService;
   private router: Router;
   private message: MessagesService;
-  private user: UsersService;
+  user: UsersService;
   textMessage = '';
 
   constructor(authorisation: AuthorisationService, router: Router, message: MessagesService, user: UsersService) {

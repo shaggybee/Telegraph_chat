@@ -12,7 +12,7 @@ export class FormMessageComponent implements OnInit {
   private message: MessagesService;
   private user: UsersService;
   private idSelectMessage: string;
-  private listMessages: MessageFormat[];
+  listMessages: MessageFormat[];
   private textRedactMessage: string;
 
   constructor(message: MessagesService, user: UsersService) {
