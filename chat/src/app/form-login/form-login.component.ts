@@ -12,10 +12,10 @@ export class FormLoginComponent implements OnInit {
   private router: Router;
   inputName = '';
 
-  constructor(authorisation: AuthorisationService, router: Router){
+  constructor(authorisation: AuthorisationService, router: Router) {
     this.router = router;
     this.authorisation = authorisation;
-  };
+  }
 
   ngOnInit() {
   }
