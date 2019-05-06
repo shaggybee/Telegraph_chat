@@ -18,11 +18,14 @@ import { FormMessageComponent } from './form-message/form-message.component';
 import { AuthorisationService } from './authorisation.service';
 import { UsersService } from './users.service';
 import { MessagesService } from './messages.service';
+import { AuthorisathionCheckGuard } from './authorisathion-check.guard';
+import { FormLoginGuard } from './form-login.guard';
 
 const appRoutes: Routes = [
-  {path: '', component: AppComponent},
-  {path: 'login', component: FormLoginComponent},
-  {path: 'chat', component: FormChatComponent}
+  {path: '', redirectTo: 'chat', pathMatch: 'full'},
+  {path: 'login', canActivate: [FormLoginGuard], component: FormLoginComponent},
+  {path: 'chat', canActivate: [AuthorisathionCheckGuard], component: FormChatComponent},
+  {path: '**', redirectTo: 'chat', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -44,7 +47,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatToolbarModule
   ],
-  providers: [AuthorisationService, UsersService, MessagesService],
+  providers: [AuthorisationService, UsersService, MessagesService, AuthorisathionCheckGuard, FormLoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,6 +14,5 @@ export class AppComponent {
   constructor(authorisation: AuthorisationService, router: Router) {
     this.router = router;
     this.authorisation = authorisation;
-    if (this.authorisation.isAutorised()) {this.router.navigate(['chat']); } else {this.router.navigate(['login']); }
   }
 }
