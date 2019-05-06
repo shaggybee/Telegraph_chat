@@ -28,6 +28,8 @@
     "express": "^4.16.4",
     "path": "^0.12.7",
     "rxjs": "~6.3.3",
+    "stylelint": "^10.0.1",
+    "stylelint-config-sass-guidelines": "^6.0.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

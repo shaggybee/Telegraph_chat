@@ -16,8 +16,7 @@ export class MessagesService {
       localStorage.setItem('listOfMessage', '');
     }
     let listMessage: MessageFormat[];
-    if (localStorage.getItem('listOfMessage') == '') { listMessage = []; }
-    else { listMessage = JSON.parse(localStorage.getItem('listOfMessage')); }
+    if (localStorage.getItem('listOfMessage') == '') { listMessage = []; } else { listMessage = JSON.parse(localStorage.getItem('listOfMessage')); }
     const message: MessageFormat = {
       idMessage: (Number.parseInt(localStorage.getItem('extremeIdMessage')) + 1).toString(),
       idUser: localStorage.getItem('CurrentUserId'),

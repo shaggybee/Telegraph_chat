@@ -33,11 +33,11 @@ export class FormChatComponent implements OnInit {
   }
 
   onMessageSend() {
-    if (this.textMessage =='') return;
+    if (this.textMessage == '') { return; }
     this.message.addMessage(this.textMessage);
     this.textMessage = '';
     setTimeout(function() {
-      document.getElementsByClassName("chat-form-messages")[0].scrollTop = document.getElementsByClassName("chat-form-messages")[0].scrollHeight;
+      document.getElementsByClassName('chat-form-messages')[0].scrollTop = document.getElementsByClassName('chat-form-messages')[0].scrollHeight;
     }, 10);
   }
 
