@@ -20,10 +20,9 @@ export class UsersService {
   public addUser(name: string): UserFormat {
     if (localStorage.getItem('extremeIdUser') == null) {
       localStorage.setItem('extremeIdUser', '0');
-      localStorage.setItem('listOfUsers', '');
+      localStorage.setItem('listOfUsers', '[]');
     }
-    let listUsers: UserFormat[];
-    if (localStorage.getItem('listOfUsers') == '') { listUsers = []; } else { listUsers = JSON.parse(localStorage.getItem('listOfUsers')); }
+    const listUsers: UserFormat[] = JSON.parse(localStorage.getItem('listOfUsers'));
     const user: UserFormat = {
       name,
       id: (Number.parseInt(localStorage.getItem('extremeIdUser')) + 1).toString()
@@ -35,7 +34,7 @@ export class UsersService {
   }
 
   public getUserById(id: string): UserFormat {
-    if ((localStorage.getItem('listOfUsers') == null) || (localStorage.getItem('listOfUsers') == '')) { return null; }
+    if (localStorage.getItem('listOfUsers') == null) { return null; }
     const listUsers: UserFormat[] = JSON.parse(localStorage.getItem('listOfUsers'));
     for (let i = 0; i < listUsers.length; i++) {
       if (listUsers[i].id == id) { return listUsers[i]; }
@@ -44,7 +43,7 @@ export class UsersService {
   }
 
   public getUserByName(name: string): UserFormat {
-    if ((localStorage.getItem('listOfUsers') == null) || (localStorage.getItem('listOfUsers') == '')) { return null; }
+    if (localStorage.getItem('listOfUsers') == null) { return null; }
     const listUsers: UserFormat[] = JSON.parse(localStorage.getItem('listOfUsers'));
     for (let i = 0; i < listUsers.length; i++) {
       if (listUsers[i].name == name) { return listUsers[i]; }
