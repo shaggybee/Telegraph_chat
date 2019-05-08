@@ -39,12 +39,8 @@ export class MessagesService {
 
   public deleteMessage(idMessage: string): MessageFormat[] {
     const listMessage: MessageFormat[] = JSON.parse(localStorage.getItem('listOfMessage'));
-    for (let index = 0; index < listMessage.length; index++) {
-      if (listMessage[index].idMessage == idMessage) {
-        listMessage.splice(index, 1);
-        break;
-      }
-    }
+    const indexDeleteMessage = listMessage.findIndex((message) => message.idMessage == idMessage);
+    listMessage.splice(indexDeleteMessage, 1);
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
     this.subjectGetMessage.next(this.getListMessage());
     return listMessage;
@@ -52,12 +48,8 @@ export class MessagesService {
 
   public redactMessage(idMessage: string, text: string) {
     const listMessage: MessageFormat[] = JSON.parse(localStorage.getItem('listOfMessage'));
-    for (let index = 0; index < listMessage.length; index++) {
-      if (listMessage[index].idMessage == idMessage) {
-        listMessage[index].textMessage = text;
-        break;
-      }
-    }
+    const indexRedactMessage = listMessage.findIndex((message) => message.idMessage == idMessage);
+    listMessage[indexRedactMessage].textMessage = text;
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
     this.subjectGetMessage.next(this.getListMessage());
     return listMessage;
