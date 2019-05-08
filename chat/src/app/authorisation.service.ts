@@ -8,10 +8,7 @@ import { UsersService } from './users.service';
 
 export class AuthorisationService {
 
-  private user: UsersService;
-
-  constructor(user: UsersService ) {
-    this.user = user;
+  constructor(private user: UsersService ) {
   }
 
   public logOut() {
