@@ -7,6 +7,7 @@ import { Subject, Observable } from 'rxjs';
 
 export class MessagesService {
   public subjectGetMessage = new Subject<any>();
+
   constructor() {
   }
 

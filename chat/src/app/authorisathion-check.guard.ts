@@ -7,13 +7,10 @@ import { AuthorisationService } from './authorisation.service';
   providedIn: 'root'
 })
 export class AuthorisathionCheckGuard implements CanActivate {
-  private authorisation: AuthorisationService;
-  private router: Router;
 
-  constructor(authorisation: AuthorisationService, router: Router) {
-    this.router = router;
-    this.authorisation = authorisation;
+  constructor(private authorisation: AuthorisationService, private router: Router) {
   }
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

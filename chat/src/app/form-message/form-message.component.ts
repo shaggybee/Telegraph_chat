@@ -9,15 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form-message.component.css']
 })
 export class FormMessageComponent implements OnInit {
-  private message: MessagesService;
-  private user: UsersService;
   private idSelectMessage: string;
   listMessages: MessageFormat[];
   private textRedactMessage: string;
 
-  constructor(message: MessagesService, user: UsersService) {
-    this.message = message;
-    this.user = user;
+  constructor(private message: MessagesService, private user: UsersService) {
     this.listMessages = this.message.getListMessage();
     this.message.subjectGetMessage.subscribe(listMessage => { this.listMessages = listMessage; });
    }

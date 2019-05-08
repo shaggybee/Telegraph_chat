@@ -11,17 +11,9 @@ import { UsersService} from '../users.service';
 })
 
 export class FormChatComponent implements OnInit {
-  private authorisation: AuthorisationService;
-  private router: Router;
-  private message: MessagesService;
-  user: UsersService;
   textMessage = '';
 
-  constructor(authorisation: AuthorisationService, router: Router, message: MessagesService, user: UsersService) {
-    this.message = message;
-    this.router = router;
-    this.authorisation = authorisation;
-    this.user = user;
+  constructor(private authorisation: AuthorisationService, private router: Router, private message: MessagesService, private user: UsersService) {
   }
 
   ngOnInit() {

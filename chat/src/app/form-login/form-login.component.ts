@@ -8,13 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./form-login.component.css']
 })
 export class FormLoginComponent implements OnInit {
-  private authorisation: AuthorisationService;
-  private router: Router;
   inputName = '';
 
-  constructor(authorisation: AuthorisationService, router: Router) {
-    this.router = router;
-    this.authorisation = authorisation;
+  constructor(private authorisation: AuthorisationService, private router: Router) {
   }
 
   ngOnInit() {
