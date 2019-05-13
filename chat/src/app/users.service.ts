@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UsersService {
+  public currentUser: BehaviorSubject<UserFormat>;
 
-  constructor() { }
+  constructor() {
+    this.currentUser = new BehaviorSubject<UserFormat>(this.getUserById(this.getIdCurrentUser()));
+  }
+
+  public current(): Observable<UserFormat> {
+    return this.currentUser.asObservable();
+  }
 
   // public getListUsers(): User[] {
   // }

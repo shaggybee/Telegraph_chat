@@ -1,6 +1,6 @@
 <mat-card class="chat-form">
     <mat-card-content class="chat-form-header">
-        <article class="text">{{this.user.getUserById(this.user.getIdCurrentUser()).name}}</article>
+        <article class="text">{{currentUser.name}}</article>
         <span class="spacer"></span>
         <button mat-icon-button (click) = "onLogOut()"><mat-icon>exit_to_app</mat-icon></button>
     </mat-card-content>

@@ -1,27 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MessagesService, MessageFormat } from '../messages.service';
-import { UsersService} from '../users.service';
+import { UsersService, UserFormat} from '../users.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-message',
   templateUrl: './form-message.component.html',
   styleUrls: ['./form-message.component.css']
 })
-export class FormMessageComponent implements OnInit {
+export class FormMessageComponent implements OnDestroy {
   private idSelectMessage: string;
-  listMessages: MessageFormat[];
   private textRedactMessage: string;
+  private listMessages: MessageFormat[];
+  private subscribeToMessages: Subscription;
+  private currentUser: UserFormat;
+  private subscribeToUser: Subscription;
 
   constructor(private message: MessagesService, private user: UsersService) {
-    this.listMessages = this.message.getListMessage();
-    this.message.subjectGetMessage.subscribe(listMessage => { this.listMessages = listMessage; });
+    this.subscribeToMessages = this.message.messages().subscribe(listMessage => { this.listMessages = listMessage; });
+    this.subscribeToUser = this.user.current().subscribe(current => this.currentUser = current);
    }
 
-  ngOnInit() {
+   ngOnDestroy() {
+    this.subscribeToUser.unsubscribe();
+    this.subscribeToMessages.unsubscribe();
   }
 
   private actionForMessageVisible(idUser: string): boolean {
-    if (idUser == this.user.getIdCurrentUser()) { return true; } else { return false; }
+    if (idUser == this.currentUser.id) { return true; } else { return false; }
   }
 
   private formRedactMessageVisible(idMessage: string): boolean {
@@ -47,7 +53,7 @@ export class FormMessageComponent implements OnInit {
     this.idSelectMessage = '';
   }
 
-  public showNameCurrentUser(idUser: string): string {
+  public showNameUser(idUser: string): string {
     return this.user.getUserById(idUser).name;
   }
 
