@@ -1,7 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessagesService, MessageFormat } from '../messages.service';
 import { UsersService} from '../users.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-message',
@@ -20,7 +19,6 @@ export class FormMessageComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
   private actionForMessageVisible(idUser: string): boolean {
     if (idUser == this.user.getIdCurrentUser()) { return true; } else { return false; }
@@ -41,7 +39,7 @@ export class FormMessageComponent implements OnInit {
 
   public onRedactMessage(idMessage: string) {
     if (this.textRedactMessage == '') { return; }
-    this.message.redactMessage(idMessage, this.textRedactMessage);
+    this.message.editMessage(idMessage, this.textRedactMessage);
     this.idSelectMessage = '';
   }
 

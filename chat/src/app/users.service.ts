@@ -36,19 +36,13 @@ export class UsersService {
   public getUserById(id: string): UserFormat {
     if (localStorage.getItem('listOfUsers') == null) { return null; }
     const listUsers: UserFormat[] = JSON.parse(localStorage.getItem('listOfUsers'));
-    for (let i = 0; i < listUsers.length; i++) {
-      if (listUsers[i].id == id) { return listUsers[i]; }
-    }
-    return null;
+    return listUsers.find((user) => user.id == id);
   }
 
   public getUserByName(name: string): UserFormat {
     if (localStorage.getItem('listOfUsers') == null) { return null; }
     const listUsers: UserFormat[] = JSON.parse(localStorage.getItem('listOfUsers'));
-    for (let i = 0; i < listUsers.length; i++) {
-      if (listUsers[i].name == name) { return listUsers[i]; }
-    }
-    return null;
+    return listUsers.find((user) => user.name == name);
   }
 
   public selectUser(id: string) {
