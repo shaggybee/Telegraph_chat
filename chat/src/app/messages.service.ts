@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,17 +39,15 @@ export class MessagesService {
 
   public deleteMessage(idMessage: string): MessageFormat[] {
     const listMessage: MessageFormat[] = JSON.parse(localStorage.getItem('listOfMessage'));
-    const indexDeleteMessage = listMessage.findIndex((message) => message.idMessage == idMessage);
-    listMessage.splice(indexDeleteMessage, 1);
-    localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
+    const filteredListMessage = listMessage.filter((message) => message.idMessage != idMessage);
+    localStorage.setItem('listOfMessage', JSON.stringify(filteredListMessage));
     this.subjectGetMessage.next(this.getListMessage());
-    return listMessage;
+    return filteredListMessage;
   }
 
-  public redactMessage(idMessage: string, text: string) {
+  public editMessage(idMessage: string, text: string) {
     const listMessage: MessageFormat[] = JSON.parse(localStorage.getItem('listOfMessage'));
-    const indexRedactMessage = listMessage.findIndex((message) => message.idMessage == idMessage);
-    listMessage[indexRedactMessage].textMessage = text;
+    listMessage.find((message) => message.idMessage == idMessage).textMessage = text;
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
     this.subjectGetMessage.next(this.getListMessage());
     return listMessage;

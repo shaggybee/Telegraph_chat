@@ -17,7 +17,7 @@ export class AuthorisationService {
 
   public logIn(name: string) {
     let user = this.user.getUserByName(name);
-    if (user == undefined) { user = this.user.addUser(name); }
+    if (!user) { user = this.user.addUser(name); }
     this.user.selectUser(user.id);
   }
 
