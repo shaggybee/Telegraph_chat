@@ -1,6 +1,6 @@
 <mat-toolbar *ngFor="let message of listMessages" class="form-message">
     <mat-toolbar-row>
-        <article class="text-user-name">{{showNameCurrentUser(message.idUser)}}</article>
+        <article class="text-user-name">{{showNameUser(message.idUser)}}</article>
         <span class="spacer"></span>
         <article class="text-time">{{message.time}}</article>
     </mat-toolbar-row>

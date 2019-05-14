@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthorisationService } from '../authorisation.service';
 import { Router } from '@angular/router';
 import { MessagesService } from '../messages.service';
-import { UsersService} from '../users.service';
+import { UsersService, UserFormat} from '../users.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-chat',
@@ -10,13 +11,17 @@ import { UsersService} from '../users.service';
   styleUrls: ['./form-chat.component.css']
 })
 
-export class FormChatComponent implements OnInit {
-  textMessage = '';
+export class FormChatComponent implements OnDestroy {
+  private textMessage = '';
+  private currentUser: UserFormat;
+  private subscribeToUser: Subscription;
 
   constructor(private authorisation: AuthorisationService, private router: Router, private message: MessagesService, private user: UsersService) {
+    this.subscribeToUser = this.user.current().subscribe(current => this.currentUser = current);
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.subscribeToUser.unsubscribe();
   }
 
   onLogOut() {
@@ -25,7 +30,7 @@ export class FormChatComponent implements OnInit {
   }
 
   onMessageSend() {
-    if (this.textMessage == '') { return; }
+    if (!this.textMessage) { return; }
     this.message.addMessage(this.textMessage);
     this.textMessage = '';
     setTimeout(function() {

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class MessagesService {
-  public subjectGetMessage = new Subject<any>();
+  public listMessages: BehaviorSubject<MessageFormat[]>;
 
   constructor() {
+    this.listMessages = new BehaviorSubject<MessageFormat[]>(this.getListMessage());
   }
 
   public addMessage(textMessage: string): MessageFormat {
@@ -26,22 +27,23 @@ export class MessagesService {
     listMessage.push(message);
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
     localStorage.setItem('extremeIdMessage', (Number.parseInt(localStorage.getItem('extremeIdMessage')) + 1).toString());
-    this.subjectGetMessage.next(this.getListMessage());
+    this.listMessages.next(this.getListMessage());
     return message;
-  }
-
-  public getMessage() {
   }
 
   public getListMessage(): MessageFormat[] {
     return JSON.parse(localStorage.getItem('listOfMessage'));
   }
 
+  public messages(): Observable<MessageFormat[]> {
+    return this.listMessages.asObservable();
+  }
+
   public deleteMessage(idMessage: string): MessageFormat[] {
     const listMessage: MessageFormat[] = JSON.parse(localStorage.getItem('listOfMessage'));
     const filteredListMessage = listMessage.filter((message) => message.idMessage != idMessage);
     localStorage.setItem('listOfMessage', JSON.stringify(filteredListMessage));
-    this.subjectGetMessage.next(this.getListMessage());
+    this.listMessages.next(this.getListMessage());
     return filteredListMessage;
   }
 
@@ -49,7 +51,7 @@ export class MessagesService {
     const listMessage: MessageFormat[] = JSON.parse(localStorage.getItem('listOfMessage'));
     listMessage.find((message) => message.idMessage == idMessage).textMessage = text;
     localStorage.setItem('listOfMessage', JSON.stringify(listMessage));
-    this.subjectGetMessage.next(this.getListMessage());
+    this.listMessages.next(this.getListMessage());
     return listMessage;
   }
 }
