@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MessagesService, MessageFormat } from '../messages.service';
 import { UsersService, UserFormat} from '../users.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-message',
@@ -9,6 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form-message.component.css']
 })
 export class FormMessageComponent implements OnDestroy {
+  private destroySubscriptions: Subject<boolean>;
   private idSelectMessage: string;
   private textRedactMessage: string;
   private listMessages: MessageFormat[];
@@ -17,13 +19,14 @@ export class FormMessageComponent implements OnDestroy {
   private subscribeToUser: Subscription;
 
   constructor(private message: MessagesService, private user: UsersService) {
-    this.subscribeToMessages = this.message.messages().subscribe(listMessage => { this.listMessages = listMessage; });
-    this.subscribeToUser = this.user.current().subscribe(current => this.currentUser = current);
+    this.destroySubscriptions = new Subject<boolean>();
+    this.subscribeToMessages = this.message.messages().pipe(takeUntil(this.destroySubscriptions)).subscribe(listMessage => this.listMessages = listMessage);
+    this.subscribeToUser = this.user.current().pipe(takeUntil(this.destroySubscriptions)).subscribe(current => this.currentUser = current);
    }
 
    ngOnDestroy() {
-    this.subscribeToUser.unsubscribe();
-    this.subscribeToMessages.unsubscribe();
+     this.destroySubscriptions.next(true);
+     this.destroySubscriptions.unsubscribe();
   }
 
   private actionForMessageVisible(idUser: string): boolean {
